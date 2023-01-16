@@ -1,11 +1,15 @@
 ﻿using CSHARP_Assignment.Interfaces;
 using CSHARP_Assignment.Models;
+using Newtonsoft.Json;
 
 namespace CSHARP_Assignment.Services;
 
 internal class MenuService
 {
     private List<IContact> contacts = new List<IContact>();
+    private FileService fileService = new FileService();
+
+    public string FilePath { get; set; }
     public void MainMenu()
     {
         Console.WriteLine("Kontaktboken");
@@ -45,10 +49,15 @@ internal class MenuService
         contact.Address = Console.ReadLine() ?? null!;
         Console.Write("Ange en postkod: ");
         contact.ZipCode = Console.ReadLine() ?? null!;
-        Console.Write("Ange en stad");
+        Console.Write("Ange en stad: ");
         contact.City = Console.ReadLine() ?? null!;
 
+        //Adding created contact to list
         contacts.Add(contact);
+        fileService.Save(FilePath, JsonConvert.SerializeObject(contacts));
+        Console.WriteLine("\tKontaken är skapad!");
+        Console.ReadKey();
+
 
     }
 
@@ -56,6 +65,13 @@ internal class MenuService
     {
         Console.WriteLine("\n VISA ALLA KONTAKTER:");
 
+        foreach(var contact in contacts)
+        {
+            Console.WriteLine($"{contact.FirstName} {contact.LastName} " +
+                $"\n {contact.Email}" +
+                $"\n {contact.Address} {contact.ZipCode} {contact.City}" +
+                $" \n {contact.Phone}\n ");
+        }
         Console.ReadLine();
     }
     private void GetContact()
@@ -67,6 +83,19 @@ internal class MenuService
     private void RemoveContact()
     {
         Console.WriteLine("\n ANGE EN KONTAKT ATT TA BORT");
+
+
+        Console.WriteLine("Är det säkert att du vill ta bort kontakten? [ y / n ]");
+        var answer = Console.ReadLine();
+        if (answer?.ToLower() == "y")
+        {
+
+            Console.WriteLine("Kontakten är borttagen");
+        } else
+        {
+
+            Console.WriteLine("Borttagningen avbröts..");
+        }
 
         Console.ReadLine();
     }
