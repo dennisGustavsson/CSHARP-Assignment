@@ -6,12 +6,16 @@ namespace CSHARP_Assignment.Services;
 
 internal class MenuService
 {
-    private List<IContact> contacts = new List<IContact>();
+    public string FilePath { get; set; } = null!;
+    private List<Contact> contacts = new List<Contact>();
     private FileService fileService = new FileService();
 
-    public string FilePath { get; set; }
+
+
     public void MainMenu()
     {
+        contacts = JsonConvert.DeserializeObject<List<Contact>>(fileService.Read(FilePath)) ?? null!;
+
         Console.WriteLine("Kontaktboken");
         Console.WriteLine("\t[1] Lägg till ny kontakt");
         Console.WriteLine("\t[2] Visa alla kontakter");
@@ -36,7 +40,7 @@ internal class MenuService
     {
         Console.WriteLine("\n LÄGG TILL EN KONTAKT:");
 
-        IContact contact = new Contact();
+        Contact contact = new Contact();
         Console.Write("Ange ett förnamn: ");
         contact.FirstName = Console.ReadLine() ?? null!;
         Console.Write("Ange ett efternamn: ");
@@ -64,13 +68,15 @@ internal class MenuService
     private void GetAllContacts()
     {
         Console.WriteLine("\n VISA ALLA KONTAKTER:");
+        
+       /* Console.WriteLine(fileService.Read(FilePath));*/
 
         foreach(var contact in contacts)
         {
             Console.WriteLine($"{contact.FirstName} {contact.LastName} " +
                 $"\n {contact.Email}" +
                 $"\n {contact.Address} {contact.ZipCode} {contact.City}" +
-                $" \n {contact.Phone}\n ");
+                $"\n {contact.Phone}\n ");
         }
         Console.ReadLine();
     }
