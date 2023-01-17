@@ -9,7 +9,7 @@ internal class MenuService
     public string FilePath { get; set; } = null!;
     private List<Contact> contacts = new List<Contact>();
     private FileService fileService = new FileService();
-
+    public bool runningApp { get; set; } = true;
 
 
     public void MainMenu()
@@ -51,7 +51,7 @@ internal class MenuService
         contact.Phone = Console.ReadLine() ?? null!;
         Console.Write("Ange en gatuadress: ");
         contact.Address = Console.ReadLine() ?? null!;
-        Console.Write("Ange en postkod: ");
+        Console.Write("Ange ett postnummer: ");
         contact.ZipCode = Console.ReadLine() ?? null!;
         Console.Write("Ange en stad: ");
         contact.City = Console.ReadLine() ?? null!;
@@ -67,7 +67,8 @@ internal class MenuService
 
     private void GetAllContacts()
     {
-        Console.WriteLine("\n VISA ALLA KONTAKTER:");
+        Console.Clear();
+        Console.WriteLine("VISA ALLA KONTAKTER: \n ");
         
        /* Console.WriteLine(fileService.Read(FilePath));*/
 
@@ -75,7 +76,7 @@ internal class MenuService
         {
             Console.WriteLine($"{contact.FirstName} {contact.LastName} " +
                 $"\n {contact.Email}" +
-                $"\n {contact.Address} {contact.ZipCode} {contact.City}" +
+                $"\n {contact.Address} {contact.ZipCode}, {contact.City}" +
                 $"\n {contact.Phone}\n ");
         }
         Console.ReadLine();
@@ -88,26 +89,51 @@ internal class MenuService
     }
     private void RemoveContact()
     {
-        Console.WriteLine("\n ANGE EN KONTAKT ATT TA BORT");
+        Console.WriteLine("\n ANGE EPOSTADRESSEN TILL KONTAKTEN DU VILL TA BORT: ");
 
+        var _email = Console.ReadLine();
 
-        Console.WriteLine("Är det säkert att du vill ta bort kontakten? [ y / n ]");
-        var answer = Console.ReadLine();
-        if (answer?.ToLower() == "y")
-        {
+        if(_email != null ) {
+            foreach (var contact in contacts)
+            {
+                if (_email == contact.Email)
+                {
+                    Console.WriteLine("Är det säkert att du vill ta bort kontakten? [ y / n ]");
+                    string answer = Console.ReadLine();
+                    if (answer.ToLower() == "y")
+                    {
+                        
+                        contacts.Remove(contact);
+                        fileService.Save(FilePath, JsonConvert.SerializeObject(contacts));
+                        Console.WriteLine("Kontakten är borttagen");
+                        break;
+                    }
+                    else
+                    {
 
-            Console.WriteLine("Kontakten är borttagen");
-        } else
-        {
+                        Console.WriteLine("Borttagningen avbröts..");
+                        break;
+                    }
 
-            Console.WriteLine("Borttagningen avbröts..");
+                }
+            }
         }
+
+        
+
+
+
 
         Console.ReadLine();
     }
     private void CloseApp   ()
     {
         Console.WriteLine("\n VILL DU AVSLUTA PROGRAMMET? [ y / n ]");
+        string answer = Console.ReadLine() ?? null! ;
+        if(answer == "y")
+        {
+            runningApp = false;
+        }
 
         Console.ReadLine();
     }
