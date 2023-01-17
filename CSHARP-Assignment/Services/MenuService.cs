@@ -70,8 +70,6 @@ internal class MenuService
         Console.Clear();
         Console.WriteLine("VISA ALLA KONTAKTER: \n ");
         
-       /* Console.WriteLine(fileService.Read(FilePath));*/
-
         foreach(var contact in contacts)
         {
             Console.WriteLine($"{contact.FirstName} {contact.LastName} " +
@@ -99,8 +97,8 @@ internal class MenuService
                 if (_email == contact.Email)
                 {
                     Console.WriteLine("Är det säkert att du vill ta bort kontakten? [ y / n ]");
-                    string answer = Console.ReadLine();
-                    if (answer.ToLower() == "y")
+                    string? answer = Console.ReadLine();
+                    if (answer?.ToLower() == "y")
                     {
                         
                         contacts.Remove(contact);
@@ -129,7 +127,7 @@ internal class MenuService
     private void CloseApp   ()
     {
         Console.WriteLine("\n VILL DU AVSLUTA PROGRAMMET? [ y / n ]");
-        string answer = Console.ReadLine() ?? null! ;
+        string? answer = Console.ReadLine();
         if(answer == "y")
         {
             runningApp = false;
