@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="MVVM\Views\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="CommunityToolKit.MVVM" Version="8.1.0" />
   </ItemGroup>
 
