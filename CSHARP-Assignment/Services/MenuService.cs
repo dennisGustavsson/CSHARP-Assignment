@@ -84,19 +84,26 @@ internal class MenuService
         Console.WriteLine("\n SÖK PÅ FÖRNAMN: ");
 
         var name = Console.ReadLine();
-        if(name != null)
+
+        if (name != null)
         {
+            bool contactExist = false;
 
             foreach (var contact in contacts)
             {
                 if (name == contact.FirstName)
                 {
+                    contactExist = true;
                     Console.WriteLine($"{contact.FirstName} {contact.LastName} " +
                          $"\n {contact.Email}" +
                          $"\n {contact.Address} {contact.ZipCode}, {contact.City}" +
                          $"\n {contact.Phone}\n ");
                     break;
                 }
+            }
+            if(!contactExist )
+            {
+                Console.WriteLine("Hittade ingen matchande kontakt");
             }
         }
         Console.ReadLine();
@@ -109,10 +116,14 @@ internal class MenuService
         var _email = Console.ReadLine();
 
         if(_email != null ) {
+
+            bool contactExist = false;
+
             foreach (var contact in contacts)
             {
                 if (_email == contact.Email)
                 {
+                    contactExist = true;
                     Console.WriteLine("Är det säkert att du vill ta bort kontakten? [ y / n ]");
                     string? answer = Console.ReadLine();
                     if (answer?.ToLower() == "y")
@@ -129,11 +140,12 @@ internal class MenuService
                         Console.WriteLine("Borttagningen avbröts..");
                     }
                     
-                } else
-                {
-                    Console.WriteLine("hittade inte");
-                }
+                } 
 
+            }
+            if(!contactExist)
+            {
+                Console.WriteLine("Hittade ingen matchande kontakt");
             }
         }
 
