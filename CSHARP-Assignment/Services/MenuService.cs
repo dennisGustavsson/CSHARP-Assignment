@@ -81,9 +81,26 @@ internal class MenuService
     }
     private void GetContact()
     {
-        Console.WriteLine("\n ANGE ETT NAMN:");
+        Console.WriteLine("\n SÖK PÅ FÖRNAMN: ");
 
+        var name = Console.ReadLine();
+        if(name != null)
+        {
+
+            foreach (var contact in contacts)
+            {
+                if (name == contact.FirstName)
+                {
+                    Console.WriteLine($"{contact.FirstName} {contact.LastName} " +
+                         $"\n {contact.Email}" +
+                         $"\n {contact.Address} {contact.ZipCode}, {contact.City}" +
+                         $"\n {contact.Phone}\n ");
+                    break;
+                }
+            }
+        }
         Console.ReadLine();
+
     }
     private void RemoveContact()
     {
@@ -110,10 +127,13 @@ internal class MenuService
                     {
 
                         Console.WriteLine("Borttagningen avbröts..");
-                        break;
                     }
-
+                    
+                } else
+                {
+                    Console.WriteLine("hittade inte");
                 }
+
             }
         }
 

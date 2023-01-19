@@ -44,10 +44,11 @@
         <ListView x:Name="lv_Contacts" Grid.Column="1">
             <ListView.ItemTemplate>
                 <DataTemplate DataType="models:Contact">
-                    <StackPanel>
+                    <StackPanel Margin="0 5 0 5">
                         <TextBlock FontWeight="SemiBold" Text="{Binding DisplayContact}"/>
                         <TextBlock Text="{Binding Email}"/>
-
+                        <TextBlock Text="{Binding Phone}"/>
+                        <TextBlock Text="{Binding Adress}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
