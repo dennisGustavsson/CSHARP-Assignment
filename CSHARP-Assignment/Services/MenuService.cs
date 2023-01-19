@@ -98,7 +98,6 @@ internal class MenuService
                          $"\n {contact.Email}" +
                          $"\n {contact.Address} {contact.ZipCode}, {contact.City}" +
                          $"\n {contact.Phone}\n ");
-                    break;
                 }
             }
             if(!contactExist )
@@ -165,6 +164,5 @@ internal class MenuService
             runningApp = false;
         }
 
-        Console.ReadLine();
     }
 }
