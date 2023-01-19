@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPFApp.Models;
+using WPFApp.MVVM.Models;
 using WPFApp.Services;
 
 namespace WPFApp
@@ -22,13 +22,13 @@ namespace WPFApp
 
     public partial class MainWindow : Window
     {
-        private ObservableCollection<Contact> contacts;
+        private ObservableCollection<ContactModel> contacts;
         private readonly FileService fileService = new FileService();
         public MainWindow()
         {
             InitializeComponent();
             fileService.FilePath = @$"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\contentwpf.json";
-            contacts = new ObservableCollection<Contact>();
+            contacts = new ObservableCollection<ContactModel>();
             LoadContactsList();
         }
 
@@ -36,7 +36,7 @@ namespace WPFApp
         {
             try
             {
-                var items = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(fileService.Read());
+                var items = JsonConvert.DeserializeObject<ObservableCollection<ContactModel>>(fileService.Read());
                 if (items != null)
                 {
                     contacts = items;
@@ -49,7 +49,7 @@ namespace WPFApp
 
         private void Btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            contacts.Add(new Contact
+            contacts.Add(new ContactModel
             {
                 FirstName = tb_FirstName.Text,
                 LastName = tb_LastName.Text,
