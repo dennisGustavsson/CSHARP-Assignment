@@ -4,9 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfAppMVVM.MVVM.Views"
+             xmlns:viewmodels="clr-namespace:WpfAppMVVM.MVVM.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:ContactsViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock>CONTACTS hejsan detta funkar</TextBlock> 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding PageTitle}"/>
+        <TextBlock Grid.Column="1" Grid.Row="0" Text="Contact Details"/>
+
+        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Contacts}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding DisplayName}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
     </Grid>
 </UserControl>

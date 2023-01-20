@@ -8,7 +8,7 @@
         xmlns:views="clr-namespace:WpfAppMVVM.MVVM.Views"
         d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -16,9 +16,9 @@
             <!--<ColumnDefinition Width="*"/>-->
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0">
-            <Button  Command="{Binding AddContactCommand}" Content="ADD" />
-            <Button  Command="{Binding ContactsCommand}" Content="LIST"/>
+        <StackPanel Grid.Column="0" Margin="2">
+            <Button  Command="{Binding AddContactCommand}" Content="ADD" Margin="2"/>
+            <Button  Command="{Binding ContactsCommand}" Content="LIST" Margin="2"/>
         </StackPanel>
         
         <!-- RENDERS THE VIEWS -->
