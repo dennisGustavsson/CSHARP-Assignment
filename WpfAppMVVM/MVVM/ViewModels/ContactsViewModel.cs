@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,6 +18,8 @@ public partial class ContactsViewModel : ObservableObject
     [ObservableProperty]
     private ObservableCollection<Contact> contacts;
 
+/*    public Contact SelectedContact { get; set; } = null!;*/
+
     public ContactsViewModel()
     {
         fileService = new FileService();
@@ -25,4 +28,10 @@ public partial class ContactsViewModel : ObservableObject
 
     [ObservableProperty]
     private string pageTitle = "Contacts";
+
+    [RelayCommand]
+    private void GetContact()
+    {
+
+    }
 }

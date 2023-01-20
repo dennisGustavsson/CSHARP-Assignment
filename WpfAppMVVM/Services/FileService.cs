@@ -16,7 +16,10 @@ public class FileService
     private string filePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\wpfContacts.json";
     private List<Contact> contacts;
 
-    public FileService() => ReadFile();
+    public FileService()
+    {
+        ReadFile();
+    }
 
     private void ReadFile()
     {

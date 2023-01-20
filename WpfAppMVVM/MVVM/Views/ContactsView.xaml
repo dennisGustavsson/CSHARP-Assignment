@@ -8,20 +8,20 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:ContactsViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="white">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding PageTitle}"/>
         <TextBlock Grid.Column="1" Grid.Row="0" Text="Contact Details"/>
 
-        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Contacts}">
+        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Contacts}" SelectedItem="">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding DisplayName}" />
@@ -29,5 +29,13 @@
             </ListView.ItemTemplate>
         </ListView>
         
+        <ListView Grid.Column="1" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="kontaktinfo" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
     </Grid>
 </UserControl>
