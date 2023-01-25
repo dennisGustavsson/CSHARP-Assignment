@@ -30,8 +30,8 @@ public partial class ContactsViewModel : ObservableObject
     private string pageTitle = "Contacts";
 
     [RelayCommand]
-    private void GetContact()
+    private void RemoveContact()
     {
-
+        /*Contacts.Remove();*/
     }
 }

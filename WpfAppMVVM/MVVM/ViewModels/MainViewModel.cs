@@ -12,23 +12,19 @@ public partial class MainViewModel : ObservableObject
 
 {
     [ObservableProperty]
-    private ObservableObject currentViewModel;
+    private ObservableObject currentViewModel = new ContactsViewModel();
 
     [RelayCommand]
-    private void AddContact()
+    private void NavAddContact()
     {
         CurrentViewModel = new AddContactViewModel();
     }
 
     [RelayCommand]
-    private void Contacts() 
+    private void NavContacts() 
     {
         CurrentViewModel = new ContactsViewModel();
     }
 
 
-    public MainViewModel()
-    {
-        CurrentViewModel = new ContactsViewModel();
-    }
 }

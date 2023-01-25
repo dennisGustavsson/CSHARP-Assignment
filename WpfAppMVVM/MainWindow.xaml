@@ -17,8 +17,8 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Margin="2">
-            <Button  Command="{Binding AddContactCommand}" Content="ADD" Margin="2"/>
-            <Button  Command="{Binding ContactsCommand}" Content="LIST" Margin="2"/>
+            <Button  Command="{Binding NavAddContactCommand}" Content="ADD" Margin="2"/>
+            <Button  Command="{Binding NavContactsCommand}" Content="LIST" Margin="2"/>
         </StackPanel>
         
         <!-- RENDERS THE VIEWS -->

@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:WpfAppMVVM.MVVM.Views"
              xmlns:viewmodels="clr-namespace:WpfAppMVVM.MVVM.ViewModels"
              d:DataContext="{d:DesignInstance Type=viewmodels:ContactsViewModel}"
+             xmlns:models="clr-namespace:WpfAppMVVM.MVVM.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="white">
@@ -21,14 +22,38 @@
         <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding PageTitle}"/>
         <TextBlock Grid.Column="1" Grid.Row="0" Text="Contact Details"/>
 
-        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Contacts}" SelectedItem="">
+        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Contacts}" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate DataType="{x:Type models:Contact}">
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Left">
+                            <TextBlock Text="{Binding DisplayName}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                            <Button x:Name="btn_EditContact" Click="btn_EditContact_Click"  Content="edit" Width="40" Margin="5"/>
+                            <Button x:Name="btn_RemoveContact" Click="btn_RemoveContact_Click" Content="remove" Width="50" Margin="5"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+
+        <!-- 
+        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Contacts}">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type models:Contact}">
                     <TextBlock Text="{Binding DisplayName}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
+
         <ListView Grid.Column="1" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -36,6 +61,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
+-->
     </Grid>
 </UserControl>
