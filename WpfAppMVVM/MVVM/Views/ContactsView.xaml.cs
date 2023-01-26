@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfAppMVVM.MVVM.Models;
+using WpfAppMVVM.Services;
 
 namespace WpfAppMVVM.MVVM.Views
 {
@@ -21,6 +22,7 @@ namespace WpfAppMVVM.MVVM.Views
     /// </summary>
     public partial class ContactsView : UserControl
     {
+       
         public ContactsView()
         {
             InitializeComponent();
@@ -37,7 +39,8 @@ namespace WpfAppMVVM.MVVM.Views
             var button = (Button)sender;
             var contact = (Contact)button.DataContext;
 
-            MessageBox.Show(contact.DisplayName);
+            ContactService.Remove(contact);
+            
         }
     }
 }

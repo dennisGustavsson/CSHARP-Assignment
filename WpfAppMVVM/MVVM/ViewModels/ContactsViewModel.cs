@@ -13,25 +13,24 @@ namespace WpfAppMVVM.MVVM.ViewModels;
 
 public partial class ContactsViewModel : ObservableObject
 {
-    private readonly FileService fileService;
+    /*private readonly FileService fileService;*/
 
     [ObservableProperty]
-    private ObservableCollection<Contact> contacts;
+    private ObservableCollection<Contact> contacts = ContactService.Contacts();
+/*    {
+        new Contact() {FirstName="dennis", Email="dennis@mail.com",LastName="Gsson", Phone="945459", Address="gatan 1", ZipCode="39343", City="örebro"}
+    };*/
 
-/*    public Contact SelectedContact { get; set; } = null!;*/
+
 
     public ContactsViewModel()
     {
-        fileService = new FileService();
-        contacts = fileService.Contacts();
+       
+
     }
 
     [ObservableProperty]
     private string pageTitle = "Contacts";
 
-    [RelayCommand]
-    private void RemoveContact()
-    {
-        /*Contacts.Remove();*/
-    }
+
 }

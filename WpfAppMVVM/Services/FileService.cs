@@ -13,48 +13,73 @@ namespace WpfAppMVVM.Services;
 
 public class FileService
 {
-    private string filePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\wpfContacts.json";
-    private List<Contact> contacts;
 
-    public FileService()
+    private string _filePath;
+
+    public FileService(string filePath)
     {
-        ReadFile();
+        _filePath = filePath;
     }
 
-    private void ReadFile()
+    public string ReadFile()
+    {
+        if (File.Exists(_filePath))
+        {
+            using var sr = new StreamReader(_filePath);
+            return sr.ReadToEnd();
+        }
+        return string.Empty;
+    }
+
+    public void SaveFile(string data)
+    {
+            using var sw = new StreamWriter(_filePath);
+             sw.WriteLine(data);
+        
+    }
+/*    public static void ReadFile()
     {
         try
         {
             using var sr = new StreamReader(filePath);
-            contacts = JsonConvert.DeserializeObject<List<Contact>>(sr.ReadToEnd())!;
+            contacts = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(sr.ReadToEnd())!;
         }
         catch
         {
-            contacts = new List<Contact>();
+            contacts = new ObservableCollection<Contact>();
         }
-    }
+    }*/
 
-    private void SaveFile()
-    {
-        using var sw = new StreamWriter(filePath);
-        sw.WriteLine(JsonConvert.SerializeObject(contacts, formatting:Formatting.Indented));
-    }
-
-    public void AddToList(Contact contact)
-    {
-        contacts.Add(contact);
-        SaveFile();
-    }
-
-   public ObservableCollection<Contact> Contacts()
-    {
-        var items = new ObservableCollection<Contact>();
-        foreach (var contact in contacts)
+    /*    public static void SaveFile()
         {
-            items.Add(contact);
-        }
-        return items;
-    }
-}
+            using var sw = new StreamWriter(filePath);
+            sw.WriteLine(JsonConvert.SerializeObject(contacts, formatting:Formatting.Indented));
+        }*/
+
+    /*    public static void AddToList(Contact contact)
+        {
+            contacts.Add(contact);
+            SaveFile();
+        }*/
+
+    /*    public static void Remove(Contact contact)
+        {
+            contacts.Remove(contact);
+            SaveFile();
+        }*/
+
+
+
+    /*    public static ObservableCollection<Contact> Contacts()
+        {
+            var items = new ObservableCollection<Contact>();
+            foreach (var contact in contacts)
+            {
+                items.Add(contact);
+            }
+            return items;
+        */
+
+};
 
 

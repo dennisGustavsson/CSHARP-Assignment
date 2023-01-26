@@ -12,10 +12,10 @@ namespace WpfAppMVVM.MVVM.ViewModels;
 
 public partial class AddContactViewModel : ObservableObject
 {
-    private readonly FileService fileService;
+    /*private readonly FileService fileService;*/
     public AddContactViewModel()
     {
-        fileService = new FileService();
+        /*fileService = new FileService();*/
     }
 
     [ObservableProperty]
@@ -45,7 +45,7 @@ public partial class AddContactViewModel : ObservableObject
     [RelayCommand]
     private void AddContact()
     {
-        fileService.AddToList(new Models.Contact {
+        ContactService.Add(new Models.Contact {
             FirstName= FirstName,
             LastName = LastName,
             Email= Email,
