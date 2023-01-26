@@ -26,6 +26,7 @@ namespace WpfAppMVVM.MVVM.Views
         public ContactsView()
         {
             InitializeComponent();
+
         }
 
         private void btn_EditContact_Click(object sender, RoutedEventArgs e)
