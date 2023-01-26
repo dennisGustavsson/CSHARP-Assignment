@@ -22,7 +22,7 @@ namespace WpfAppMVVM.MVVM.Views
     /// </summary>
     public partial class ContactsView : UserControl
     {
-       
+
         public ContactsView()
         {
             InitializeComponent();

@@ -13,20 +13,17 @@ namespace WpfAppMVVM.MVVM.ViewModels;
 
 public partial class ContactsViewModel : ObservableObject
 {
-    /*private readonly FileService fileService;*/
+
 
     [ObservableProperty]
     private ObservableCollection<Contact> contacts = ContactService.Contacts();
-/*    {
-        new Contact() {FirstName="dennis", Email="dennis@mail.com",LastName="Gsson", Phone="945459", Address="gatan 1", ZipCode="39343", City="örebro"}
-    };*/
 
 
+    [ObservableProperty]
+    private Contact selectedContact = null!;
 
     public ContactsViewModel()
     {
-       
-
     }
 
     [ObservableProperty]
