@@ -16,14 +16,18 @@ public static class ContactService
 
     static ContactService()
     {
+
         try {
             contacts = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(fileService.ReadFile())!;
         } catch {
-        contacts = new ObservableCollection<Contact>();
+
+        contacts = new ObservableCollection<Contact>()!;
+
         }
     }
     public static void Add(Contact contact)
     {
+        contacts ??= new ObservableCollection<Contact>()!;
         contacts.Add(contact);
         fileService.SaveFile(JsonConvert.SerializeObject(contacts, formatting: Formatting.Indented));
     }

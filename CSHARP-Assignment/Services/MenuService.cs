@@ -14,7 +14,11 @@ public class MenuService
 
     public void MainMenu()
     {
-        contacts = JsonConvert.DeserializeObject<List<Contact>>(fileService.Read(FilePath)) ?? null!;
+        try
+        {
+            contacts = JsonConvert.DeserializeObject<List<Contact>>(fileService.Read(FilePath))!;
+        } catch { }
+        
 
         Console.WriteLine("Kontaktboken");
         Console.WriteLine("\t[1] Lägg till ny kontakt");
