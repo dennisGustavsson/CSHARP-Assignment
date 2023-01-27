@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="WpfAppMVVM.MVVM.Views.EditContactView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfAppMVVM.MVVM.Views"
+             xmlns:viewmodels="clr-namespace:WpfAppMVVM.MVVM.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="10 20 30 0" Background="white">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding PageTitle}" FontSize="18" Margin="10 5 0 5" FontWeight="SemiBold"/>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Firstname:" />
+            <TextBox Text="{Binding}" Padding="2 5 2 5" Margin="0 3"/>
+
+            <TextBlock Text="Lastname:" />
+            <TextBox Text="{Binding LastName}" Padding="2 5 2 5" Margin="0 3"/>
+
+            <TextBlock Text="Email:" />
+            <TextBox Text="{Binding Email}" Padding="2 5 2 5" Margin="0 3"/>
+
+            <TextBlock Text="Phone:" />
+            <TextBox Text="{Binding Phone}" Padding="2 5 2 5" Margin="0 3"/>
+
+            <TextBlock Text="Adress:" />
+            <TextBox Text="{Binding Adress}" Padding="2 5 2 5" Margin="0 3"/>
+
+            <TextBlock Text="Zipcode:" />
+            <TextBox Text="{Binding ZipCode}" Padding="2 5 2 5" Margin="0 3"/>
+
+            <TextBlock Text="City:" />
+            <TextBox Text="{Binding City}" Padding="2 5 2 5" Margin="0 3"/>
+
+            <Button Command="{Binding AddContactCommand}" Content="Add Contact" Margin="0 10 0 0" Padding="5" FontWeight="Light" />
+        </StackPanel>
+
+
+    </Grid>
+</UserControl>

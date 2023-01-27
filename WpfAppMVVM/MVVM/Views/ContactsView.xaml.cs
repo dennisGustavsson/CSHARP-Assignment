@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,8 @@ namespace WpfAppMVVM.MVVM.Views
         {
             var button = (Button)sender;
             var contact = (Contact)button.DataContext;
+
+           
         }
 
         private void btn_RemoveContact_Click(object sender, RoutedEventArgs e)
@@ -40,7 +43,11 @@ namespace WpfAppMVVM.MVVM.Views
             var button = (Button)sender;
             var contact = (Contact)button.DataContext;
 
-            ContactService.Remove(contact);
+            if(MessageBox.Show("Delete Contact?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                ContactService.Remove(contact);
+            }
+            
             
         }
     }

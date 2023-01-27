@@ -25,12 +25,12 @@ public static class ContactService
     public static void Add(Contact contact)
     {
         contacts.Add(contact);
-        fileService.SaveFile(JsonConvert.SerializeObject(contacts));
+        fileService.SaveFile(JsonConvert.SerializeObject(contacts, formatting: Formatting.Indented));
     }
     public static void Remove(Contact contact) 
     { 
         contacts.Remove(contact);
-        fileService.SaveFile(JsonConvert.SerializeObject(contacts));
+        fileService.SaveFile(JsonConvert.SerializeObject(contacts, formatting: Formatting.Indented));
     }
 
     public static ObservableCollection<Contact> Contacts()

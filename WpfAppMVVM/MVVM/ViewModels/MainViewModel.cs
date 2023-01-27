@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfAppMVVM.MVVM.Views;
 
 namespace WpfAppMVVM.MVVM.ViewModels;
 
@@ -26,5 +27,10 @@ public partial class MainViewModel : ObservableObject
         CurrentViewModel = new ContactsViewModel();
     }
 
+    [RelayCommand]
+    private void NavEdit()
+    {
+        /*CurrentViewModel = new EditContactViewModel();*/
+    }
 
 }

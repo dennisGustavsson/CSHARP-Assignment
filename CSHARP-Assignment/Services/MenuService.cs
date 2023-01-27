@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 
 namespace CSHARP_Assignment.Services;
 
-internal class MenuService
+public class MenuService
 {
     public string FilePath { get; set; } = null!;
-    private List<Contact> contacts = new List<Contact>();
+    public List<Contact> contacts = new List<Contact>();
     private FileService fileService = new FileService();
     public bool runningApp { get; set; } = true;
 
