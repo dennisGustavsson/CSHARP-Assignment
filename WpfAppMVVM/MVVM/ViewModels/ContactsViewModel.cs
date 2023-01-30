@@ -22,12 +22,11 @@ public partial class ContactsViewModel : ObservableObject
     [ObservableProperty]
     private Contact selectedContact = null!;
 
-    public ContactsViewModel()
-    {
-    }
 
     [ObservableProperty]
     private string pageTitle = "Contacts";
+
+
 
 
 }

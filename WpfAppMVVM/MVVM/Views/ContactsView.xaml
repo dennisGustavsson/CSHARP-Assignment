@@ -51,6 +51,7 @@
             <TextBlock Text="{Binding SelectedContact.Address}"/>
             <TextBlock Text="{Binding SelectedContact.ZipCode}"/>
             <TextBlock Text="{Binding SelectedContact.City}"/>
+            
         </StackPanel>
 
     </Grid>

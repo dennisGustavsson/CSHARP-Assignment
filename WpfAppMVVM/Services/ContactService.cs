@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WpfAppMVVM.MVVM.Models;
 
 namespace WpfAppMVVM.Services;
@@ -16,14 +12,9 @@ public static class ContactService
 
     static ContactService()
     {
-
         try {
             contacts = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(fileService.ReadFile())!;
-        } catch {
-
-        contacts = new ObservableCollection<Contact>()!;
-
-        }
+        } catch { contacts = new ObservableCollection<Contact>()!; }
     }
     public static void Add(Contact contact)
     {
@@ -35,6 +26,11 @@ public static class ContactService
     { 
         contacts.Remove(contact);
         fileService.SaveFile(JsonConvert.SerializeObject(contacts, formatting: Formatting.Indented));
+    }
+
+    public static void Edit(Contact contact)
+    {
+
     }
 
     public static ObservableCollection<Contact> Contacts()
