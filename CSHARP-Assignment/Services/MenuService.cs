@@ -19,7 +19,7 @@ public class MenuService
             contacts = JsonConvert.DeserializeObject<List<Contact>>(fileService.Read(FilePath))!;
         } catch { }
         
-
+        // writes out the menu
         Console.WriteLine("Kontaktboken");
         Console.WriteLine("\t[1] Lägg till ny kontakt");
         Console.WriteLine("\t[2] Visa alla kontakter");
@@ -46,19 +46,19 @@ public class MenuService
 
         Contact contact = new Contact();
         Console.Write("Ange ett förnamn: ");
-        contact.FirstName = Console.ReadLine() ?? null!;
+        contact.FirstName = FirstLetterToUpper(Console.ReadLine() ?? null!);
         Console.Write("Ange ett efternamn: ");
-        contact.LastName= Console.ReadLine() ?? null!;
+        contact.LastName = FirstLetterToUpper(Console.ReadLine() ?? null!);
         Console.Write("Ange en epostadress: ");
         contact.Email = Console.ReadLine() ?? null!;
         Console.Write("Ange ett telefonnummer: ");
         contact.Phone = Console.ReadLine() ?? null!;
         Console.Write("Ange en gatuadress: ");
-        contact.Address = Console.ReadLine() ?? null!;
+        contact.Address = FirstLetterToUpper(Console.ReadLine() ?? null!);
         Console.Write("Ange ett postnummer: ");
         contact.ZipCode = Console.ReadLine() ?? null!;
         Console.Write("Ange en stad: ");
-        contact.City = Console.ReadLine() ?? null!;
+        contact.City = FirstLetterToUpper(Console.ReadLine() ?? null!);
 
         //Adding created contact to list
         contacts.Add(contact);
@@ -77,9 +77,7 @@ public class MenuService
         foreach(var contact in contacts)
         {
             Console.WriteLine($"{contact.FirstName} {contact.LastName} " +
-                $"\n {contact.Email}" +
-                $"\n {contact.Address} {contact.ZipCode}, {contact.City}" +
-                $"\n {contact.Phone}\n ");
+                $"\n {contact.Email}");
         }
         Console.ReadLine();
     }
@@ -87,7 +85,7 @@ public class MenuService
     {
         Console.WriteLine("\n SÖK PÅ FÖRNAMN: ");
 
-        var name = Console.ReadLine();
+        var name = FirstLetterToUpper(Console.ReadLine());
 
         if (name != null)
         {
@@ -110,7 +108,6 @@ public class MenuService
             }
         }
         Console.ReadLine();
-
     }
     private void RemoveContact()
     {
@@ -131,7 +128,6 @@ public class MenuService
                     string? answer = Console.ReadLine();
                     if (answer?.ToLower() == "y")
                     {
-                        
                         contacts.Remove(contact);
                         fileService.Save(FilePath, JsonConvert.SerializeObject(contacts));
                         Console.WriteLine("Kontakten är borttagen");
@@ -139,23 +135,15 @@ public class MenuService
                     }
                     else
                     {
-
                         Console.WriteLine("Borttagningen avbröts..");
                     }
-                    
                 } 
-
             }
             if(!contactExist)
             {
                 Console.WriteLine("Hittade ingen matchande kontakt");
             }
         }
-
-        
-
-
-
 
         Console.ReadLine();
     }
@@ -168,5 +156,15 @@ public class MenuService
             runningApp = false;
         }
 
+    }
+
+    private string FirstLetterToUpper(string? word)
+    {
+        if (word == null)
+            return null!;
+        if (word.Length > 1)
+            return char.ToUpper(word[0]) + word.Substring(1);
+
+        return word.ToUpper();
     }
 }
