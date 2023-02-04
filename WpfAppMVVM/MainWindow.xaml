@@ -19,6 +19,7 @@
         <StackPanel Grid.Column="0" Margin="2">
             <Button  Command="{Binding NavAddContactCommand}" Content="ADD" Margin="2"/>
             <Button  Command="{Binding NavContactsCommand}" Content="LIST" Margin="2"/>
+            <Button  Command="{Binding NavEditCommand}" Content="EDIT" Margin="2"/>
         </StackPanel>
         
         <!-- RENDERS THE VIEWS -->
@@ -35,7 +36,12 @@
                 <DataTemplate DataType="{x:Type viewmodels:AddContactViewModel}">
                     <views:AddContactView/>
                 </DataTemplate>
-                
+
+                <!-- ADD NEW CONTACT VIEW MODEL -->
+                <DataTemplate DataType="{x:Type viewmodels:EditContactViewModel}">
+                    <views:EditContactView/>
+                </DataTemplate>
+
             </ContentControl.Resources>
         </ContentControl>
         

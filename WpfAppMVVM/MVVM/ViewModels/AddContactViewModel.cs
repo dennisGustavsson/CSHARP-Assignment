@@ -42,9 +42,9 @@ public partial class AddContactViewModel : ObservableObject
     private void AddContact()
     {
         ContactService.Add(new Models.Contact {
-            FirstName= FirstName,
+            FirstName = FirstName,
             LastName = LastName,
-            Email= Email,
+            Email = Email,
             Phone = Phone,
             Address = Adress,
             ZipCode = ZipCode,
@@ -58,5 +58,6 @@ public partial class AddContactViewModel : ObservableObject
         Adress = string.Empty;
         ZipCode = string.Empty;
         City = string.Empty;
+
     }
 }

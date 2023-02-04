@@ -14,6 +14,7 @@ public class MenuService
 
     public void MainMenu()
     {
+        //loads json file from desktop to contactlist
         try
         {
             contacts = JsonConvert.DeserializeObject<List<Contact>>(fileService.Read(FilePath))!;
@@ -85,6 +86,7 @@ public class MenuService
     {
         Console.WriteLine("\n SÖK PÅ FÖRNAMN: ");
 
+        // search for specific contact by firstname
         var name = FirstLetterToUpper(Console.ReadLine());
 
         if (name != null)
@@ -109,6 +111,7 @@ public class MenuService
         }
         Console.ReadLine();
     }
+
     private void RemoveContact()
     {
         Console.WriteLine("\n ANGE EPOSTADRESSEN TILL KONTAKTEN DU VILL TA BORT: ");

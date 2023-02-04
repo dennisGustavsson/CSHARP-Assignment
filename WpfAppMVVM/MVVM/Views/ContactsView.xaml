@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfAppMVVM.MVVM.Views"
              xmlns:viewmodels="clr-namespace:WpfAppMVVM.MVVM.ViewModels"
-             d:DataContext="{d:DesignInstance Type=viewmodels:ContactsViewModel}"
+             d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
              xmlns:models="clr-namespace:WpfAppMVVM.MVVM.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -53,6 +53,19 @@
             <TextBlock Text="{Binding SelectedContact.City}"/>
             
         </StackPanel>
+        <Grid Grid.Column="1"
+              Grid.Row="1">
+            <Button
+                Height="15"
+                HorizontalAlignment="Left"
+                Content="EDIT"
+                Command="{Binding NavEditCommand}"/>
+            <Button
+                 Height="15"
+                 HorizontalAlignment="Right"
+                 Content="REMOVE"/>
+        </Grid>
+
 
     </Grid>
 </UserControl>
